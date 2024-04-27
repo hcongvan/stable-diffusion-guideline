@@ -157,32 +157,6 @@ Tính năng `ControlNet` sẽ giúp bạn tạo ra những hình ảnh theo 1 ch
         Apply Horizontal Flip: true
         Use LORA: False
     ```
-### Train SDXL LoRA
-
-- Tạo model:
-    - ở `Model`->`Create`:
-
-        ![alt text](image-14.png)
-
-        Điền tên model bạn muốn train, `Model Type`: SDXL -> `Source checkpoint`: chọn model SDXL bạn muốn finetune
-
-- setup parameters:
-    ```
-        Use EMA: False
-        Optimizer: 8bit AdamW
-        Mixed Precision: bf16
-        Memory Attention: xformer
-        Cache Latents: False
-        Step Ratio of Text Encoder Training: 1
-        Clip Skip: 2
-        Pad Tokens: true
-        Training Steps Per Image (Epochs): 100 - 500
-        Max Resolution: 512
-        Apply Horizontal Flip: true
-        Use LORA: true
-        Lora UNET Learning Rate: 0.00001 - 0.00005
-        Lora Text Encoder Learning Rate: 0.00008 - 0.0001
-    ```
 
 ### Model zoo:
 
