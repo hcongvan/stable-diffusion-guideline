@@ -85,6 +85,110 @@ Tính năng `ControlNet` sẽ giúp bạn tạo ra những hình ảnh theo 1 ch
 [ControlNet extension](https://github.com/Mikubill/sd-webui-controlnet)
 ### DreamBooth train your style
 
+Đối với việc train Dreambooth, chúng ta chỉ đang finetuning lại model có sẵn để có thêm 1 số định nghĩa class mới, khi dùng model sdxl chúng ta không tìm câu lệnh nào để gen ra hình ảnh theo style art hoặc nhân vật mà ta mong muốn, lúc này chúng ta cần thu thập hình ảnh về những khái niệm mong muốn, ví dụ: với câu lệnh "Ngoc Trinh, sit on chair,  " thì model sẽ không hiểu khái niệm "Ngoc Trinh" là gì.  
+
+- Chuẩn bị data: chúng ta cần thu thập các hình ảnh về đối tượng cần train với độ phân giải là 512x512 ( 768x768, 1024x1024 độ phân giải các cao thì train càng lâu), đặt tên theo số thứ tự hoặc đặt tên theo <số thứ tự>-<câu prompt>.png  
+- Câu lệnh đặc biệt: hãy sử dụng những cụm từ riêng biệt để xác định câu lệnh cho đối tượng bạn muốn gen ra, ví dụ như: ngoc trinh -> gen ra hình ảnh Ngọc Trinh, icongame art -> gen ra các icon game.
+- Khai báo Concept: 
+    - ở tab `Concept` -> `Instance image`:
+
+        ![alt text](image-11.png)
+
+        `Directory`: thư mục chứa hình ảnh đã được chuẩn bị ở trên
+
+        `Prompt`: nếu `Prompt` sử dụng [filename], thì bỏ qua bước này, ngoài ra bạn có thể điền câu lệnh đặc biệt ở đây và bỏ qua 2 biến số ở dưới
+
+        `Instance token`: nếu `Prompt` sử dụng [filename], hãy điền câu lệnh đặc biệt đã xác định ở trên
+
+        `Class token`: nếu `Prompt` sử dụng [filename], hãy điền câu lệnh class là lớp tổng quát ví dụ elly tran -> woman, girl
+
+    - ở `Class Image`:
+
+        ![alt text](image-12.png)
+        
+        `Directory (Optional)`: thư mục các hình ảnh từ class
+
+        `Prompt`: câu lệnh tạo ảnh 
+
+        `Negative prompt`: câu lệnh chống tạo ảnh theo các từ ra lệnh 
+
+        `Class Images Per Instance Image`: số image gen 
+
+        `Classification CFG Scale`: thông số câu lệnh : 7-12
+
+        `Classification Steps`: số bước lọc nhiễu
+
+    - ở `Sample Image`:
+
+        ![alt text](image-13.png)
+
+        `Sample Image Prompt`: lệnh gen ảnh mẫu trong quá trình huấn luyện
+
+        `Sample Negative Prompt`: câu lệnh chống gen ảnh mẫu 
+
+        `Sample Prompt Template File (Optional)`: bạn có thể dùng tập tin .txt chứ các câu lệnh gen hình mẫu
+
+        `Number of Samples to Generate`: số hình mẫu gen trong qúa trình huấn luyện 
+
+        `Sample Steps`: số bước lọc nhiễu
+
+### Finetuning SD 1.5
+
+- Tạo model: 
+    - ở `Model`->`Create`:
+
+        ![alt text](image-14.png)
+
+        Điền tên model bạn muốn train, `Model Type`: v1x -> `Source checkpoint`: chọn model SD v1.5 bạn muốn finetune
+
+- setup parameters:
+
+    ```
+        Use EMA: False
+        Optimizer: 8bit AdamW
+        Mixed Precision: bf16
+        Memory Attention: xformer
+        Cache Latents: False
+        Step Ratio of Text Encoder Training: 1
+        Clip Skip: 2
+        Pad Tokens: true
+        Training Steps Per Image (Epochs): 100 - 500
+        Max Resolution: 512
+        Apply Horizontal Flip: true
+        Use LORA: False
+    ```
+### Train SDXL LoRA
+
+- Tạo model:
+    - ở `Model`->`Create`:
+
+        ![alt text](image-14.png)
+
+        Điền tên model bạn muốn train, `Model Type`: SDXL -> `Source checkpoint`: chọn model SDXL bạn muốn finetune
+
+- setup parameters:
+    ```
+        Use EMA: False
+        Optimizer: 8bit AdamW
+        Mixed Precision: bf16
+        Memory Attention: xformer
+        Cache Latents: False
+        Step Ratio of Text Encoder Training: 1
+        Clip Skip: 2
+        Pad Tokens: true
+        Training Steps Per Image (Epochs): 100 - 500
+        Max Resolution: 512
+        Apply Horizontal Flip: true
+        Use LORA: true
+        Lora UNET Learning Rate: 0.00001 - 0.00005
+        Lora Text Encoder Learning Rate: 0.00008 - 0.0001
+    ```
+
+### Model zoo:
+
+- Một số website cho model SD được cộng đồng phát triển: [Civitai](https://civitai.com/)
+![alt text](image-10.png)
+
 ### Plugin Photoshop:
 
 [Plugin PTS](https://github.com/isekaidev/stable.art)
