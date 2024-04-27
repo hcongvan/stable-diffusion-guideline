@@ -198,6 +198,9 @@ Tính năng `ControlNet` sẽ giúp bạn tạo ra những hình ảnh theo 1 ch
 [Show case](https://www.youtube.com/watch?v=VL_gbQai79E)
 
 ### Txt-2-3D
+
 [stable dreamfusion](https://github.com/ashawkey/stable-dreamfusion)
+
 [shape-e](https://github.com/openai/shap-e)
+
 [3D editor extension](https://github.com/jtydhr88/sd-webui-3d-editor)
