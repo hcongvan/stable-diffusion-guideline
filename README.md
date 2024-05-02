@@ -1,5 +1,11 @@
 # HƯỚNG DẪN SỬ DỤNG STABLE DIFFUSION ĐỂ TẠO RA NHỮNG HÌNH ẢNH CHẤT LƯỢNG
 
+## Text2image model:
+
+- [Midjourney](https://www.midjourney.com/home): sử dụng qua discord, model gen hình tốt qua câu lệnh đầy đủ
+- Dall-e: model được OpenAI, Microsoft tích hợp vào hệ thống (miễn phí và có phí), model gen hình ảnh tốt qua 1 vài miêu tả, thân thiện với người dùng.
+- Stable Diffusion: model opensource, được cộng đồng phát triển thành nhiều loại model, tính năng hỗ trợ khác nhau, khá phức tạp nhưng manual được, được nhiều dev sử dụng
+
 ## Chọn model stable diffusion nào?
 
 Hiện tại, stable diffusion được phát triển thành các bản 1.5, 2.0, 2.1 và XL và 1 cộng đồng phát triển model này với nhiều phiên bản khác nhau nhằm tạo ra những model tạo sinh hình ảnh có chất lượng tốt. Có thể liệt kê 1 vài model chất lượng được cộng đồng đánh giá và sử dụng nhiều:
@@ -178,3 +184,5 @@ Tính năng `ControlNet` sẽ giúp bạn tạo ra những hình ảnh theo 1 ch
 [shape-e](https://github.com/openai/shap-e)
 
 [3D editor extension](https://github.com/jtydhr88/sd-webui-3d-editor)
+
+[TripoSR](https://huggingface.co/stabilityai/TripoSR)
